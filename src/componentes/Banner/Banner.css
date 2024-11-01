@@ -1,8 +1,9 @@
 .banner {
-    background-color: #6278f7;
+    background: linear-gradient(90deg in oklab, rgb(0, 0, 0), rgb(73, 70, 70));
     text-align: center;
+    padding: 30px;
 }
 
 .banner img {
-    max-width: 100%;
+    max-width: 20%;
 }
