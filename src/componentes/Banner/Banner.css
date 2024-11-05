@@ -1,9 +1,19 @@
 .banner {
-    background: linear-gradient(90deg in oklab, rgb(0, 0, 0), rgb(73, 70, 70));
-    text-align: center;
-    padding: 30px;
+    background-color: #050509;;
+}
+
+.banner h1 {
+    color: aliceblue;
 }
 
 .banner img {
-    max-width: 20%;
+    padding-top: 10px;
+    height: auto;
+    max-width: 6%;
+}
+
+.banner .linha{
+    width: 100%;
+    padding-top: 0px;
+    border-bottom: 1px solid #1A1A20;
 }

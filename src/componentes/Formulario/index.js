@@ -1,78 +1,95 @@
-import { useState } from 'react'
-import Botao from '../Botao'
-import CampoTexto from '../CampoTexto'
-import ListaSuspensa from '../ListaSuspensa'
-import './Formulario.css'
+import { useState } from 'react';
+import Botao from '../Botao';
+import CampoTexto from '../CampoTexto';
+import ListaSuspensa from '../ListaSuspensa';
+import './Formulario.css';
 
 const Formulario = (props) => {
-    const cor = [
-        'Azul',
-        'Amarelo',
-        'Laranja',
-        'Vermelho',
-        'Roxo',
-        'Verde'
-    ]
-
-    const [nome, setNome] = useState('')
-    const [lane, setLane] = useState('')
-    const [imagem, setImagem] = useState('')
-    const [time, setTime] = useState('')
-    const [cores, setCores] = useState('')
+    const [nome, setNome] = useState('');
+    const [funcao, setFuncao] = useState('');
+    const [imagem, setImagem] = useState('');
+    const [equipe, setEquipe] = useState('');
+    const [cor, setCor] = useState(''); // Adicionando o campo de cor
 
     const aoSalvar = (evento) => {
-        evento.preventDefault()
+        evento.preventDefault();
         props.newJogador({
             nome,
-            lane,
+            funcao,
             imagem,
-            time,
-            cores
-        })
-    }
+            equipe,
+            cor, // Adicionando a cor ao objeto jogador
+        });
+        setNome('')
+        setFuncao('')
+        setImagem('')
+        setEquipe('')
+    };
+
+    // Lista de cores disponíveis para seleção
+    const coresDisponiveis = [
+        { nome: 'Azul', valor: '#82CFFA' },
+        { nome: 'Amarelo', valor: '#FFBA05' },
+        { nome: 'Laranja', valor: '#FF8A29' },
+        { nome: 'Vermelho', valor: '#E06B69' },
+        { nome: 'Roxo', valor: '#7209d4' },
+        { nome: 'Verde', valor: '#57C278' },
+    ];
 
     return (
         <section className='formulario'>
+            <div>
+                <img
+                    src="/imagens/gaming.jpg" // Mostra a imagem fornecida ou uma imagem padrão
+                    alt="Jogador"
+                />
+            </div>
+
             <form onSubmit={aoSalvar}>
-                <h2>Preencha os dados para criar o card dos jogadores</h2>
+                <h2>Preencha os dados para criar o card dos jogadores:</h2>
+                
                 <CampoTexto 
                     obrigatorio={true} 
                     label="Nome" 
                     placeholder="Digite o nome" 
-                    valor = {nome}
-                    aoAlterado={valor => setNome(valor)}
+                    valor={nome}
+                    aoAlterado={(valor) => setNome(valor)}
                 />
 
                 <CampoTexto 
                     obrigatorio={true} 
-                    label="Lane" 
-                    placeholder="Digite a lane"
-                    valor = {lane}
-                    aoAlterado={valor => setLane(valor)}
+                    label="Função" 
+                    placeholder="Digite a função"
+                    valor={funcao}
+                    aoAlterado={(valor) => setFuncao(valor)}
                 />
 
                 <CampoTexto 
                     obrigatorio={true} 
                     label="Imagem" 
                     placeholder="Informe o endereço da imagem" 
-                    valor = {imagem}
-                    aoAlterado={valor => setImagem(valor)}
+                    valor={imagem}
+                    aoAlterado={(valor) => setImagem(valor)}
                 />
 
                 <CampoTexto 
                     obrigatorio={true} 
-                    label="Time" 
-                    placeholder="Digite o nome do time"
-                    valor = {time}
-                    aoAlterado={valor => setTime(valor)}
+                    label="Equipe" 
+                    placeholder="Digite o nome da equipe"
+                    valor={equipe}
+                    aoAlterado={(valor) => setEquipe(valor)}
                 />
 
                 <ListaSuspensa 
                     obrigatorio={true} 
-                    label="Cor" 
-                    itens={cor}
-                    valor = {cores}
-                    aoAlterado={valor => setCores(valor)}
+                    label="Escolha a cor para o time" 
+                    itens={coresDisponiveis.map((cor) => cor.nome)}
+                    valor={cor}
+                    aoAlterado={(valor) => {
+                        // Atualizar o valor de `cor` com a cor selecionada
+                        const corSelecionada = coresDisponiveis.find(c => c.nome === valor);
+                        setCor(corSelecionada ? corSelecionada.valor : '');
+                    }}
                 />
 
                 <Botao>
@@ -80,7 +97,7 @@ const Formulario = (props) => {
                 </Botao>
             </form>
         </section>
-    )
-}
+    );
+};
 
-export default Formulario
+export default Formulario;
