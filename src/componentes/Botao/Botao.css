@@ -24,6 +24,7 @@
   -webkit-user-select: none;
   touch-action: manipulation;
   margin: 32px 0;
+  border-radius: 30px;
 }
 
 .button-59:focus {
@@ -31,15 +32,15 @@
 }
 
 .button-59:hover {
-  border-color: #06f;
-  color: #06f;
-  fill: #06f;
+  border-color: rgb(112, 115, 121);
+  color: rgb(112, 115, 121);
+  fill: rgb(112, 115, 121);
 }
 
 .button-59:active {
-  border-color: #06f;
-  color: #06f;
-  fill: #06f;
+  border-color: rgb(129, 134, 143);
+  color: rgb(129, 134, 143);
+  fill: rgb(129, 134, 143);
 }
 
 @media (min-width: 768px) {

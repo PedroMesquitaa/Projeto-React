@@ -1,0 +1,102 @@
+.jogador {
+    width: 220px; /* Diminuído de 280px para 220px */
+    -webkit-transition: -webkit-transform .3s ease;
+    transition: transform .3s ease;
+}
+
+.jogador:hover {
+    -webkit-transform: scale(1.05); /* Escala menor para um efeito mais sutil */
+    transform: scale(1.05);
+}
+
+.jogador .cabecalho {
+    background-color: #F0F0F0;
+    border-radius: 8px 8px 0 0; /* Bordas menores */
+}
+
+.jogador img {
+    width: 80px; /* Diminuído de 100px para 80px */
+    border-radius: 50%;
+    position: relative;
+    bottom: -40px; /* Ajustado para ficar proporcional */
+}
+
+.jogador .rodape {
+    background: #FFFFFF;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.08); /* Redução da sombra */
+    border-radius: 0 0 8px 8px; /* Bordas menores */
+    padding-top: 60px; /* Reduzido de 90px para 60px */
+    padding-bottom: 20px; /* Reduzido de 40px para 20px */
+}
+
+.jogador .rodape h4 {
+    color: #6278F7;
+    font-size: 16px; /* Diminuído de 18px para 16px */
+    line-height: 20px; /* Ajustado para acompanhar o novo tamanho */
+    font-weight: bold;
+    margin-bottom: 6px; /* Menor espaço */
+}
+
+.jogador .rodape h5 {
+    font-size: 14px; /* Diminuído de 18px para 14px */
+    line-height: 18px; /* Ajustado para acompanhar o novo tamanho */
+    color: #212121;
+    padding: 0 12px; /* Reduzido para menor preenchimento */
+}
+
+.button-4 {
+  appearance: none;
+  background-color: #FAFBFC;
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  border-radius: 6px;
+  box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+  box-sizing: border-box;
+  color: #24292E;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  list-style: none;
+  padding: 6px 16px;
+  position: relative;
+  transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+  word-wrap: break-word;
+}
+
+.button-4:hover {
+  background-color: #c5c7ce;
+  text-decoration: none;
+  transition-duration: 0.1s;
+}
+
+.button-4:disabled {
+  background-color: #FAFBFC;
+  border-color: rgba(27, 31, 35, 0.15);
+  color: #959DA5;
+  cursor: default;
+}
+
+.button-4:active {
+  background-color: #EDEFF2;
+  box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+  transition: none 0s;
+}
+
+.button-4:focus {
+  outline: 1px transparent;
+}
+
+.button-4:before {
+  display: none;
+}
+
+.button-4:-webkit-details-marker {
+  display: none;
+}
