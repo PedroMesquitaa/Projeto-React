@@ -8,13 +8,13 @@ const Time = (props) => {
             <div className='jogadores'>
                 {props.jogadores.map(jogador => (
                     <Jogador 
-                        corDeFundo ={props.corPrimaria}
-                        key={jogador.nome} 
+                        corDeFundo={props.corPrimaria}
+                        key={jogador.id} // Use o `id` do jogador como chave
                         nome={jogador.nome} 
                         funcao={jogador.funcao} 
                         imagem={jogador.imagem}
                         cor={props.corPrimaria} // Cor para o fundo do card
-                        onRemove={() => props.onRemoveJogador(jogador.nome)} // Função de remoção
+                        onRemove={() => props.onRemoveJogador(jogador.id)} // Use o `id` do jogador para remoção
                     />
                 ))}
             </div>
