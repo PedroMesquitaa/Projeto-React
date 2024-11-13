@@ -1,3 +1,5 @@
+// App.js
+
 import { useState } from 'react';
 import Banner from './componentes/Banner/Banner';
 import Formulario from './componentes/Formulario';
@@ -14,7 +16,7 @@ function App() {
         // Se o time já existe, adicione o jogador a esse time específico
         return prevTimes.map((time) =>
           time.nome === jogador.equipe
-            ? { ...time, jogadores: [...time.jogadores, jogador] }
+            ? { ...time, jogadores: [...time.jogadores, { ...jogador, id: Date.now() }] } // Adicione um campo `id` único para cada jogador
             : time
         );
       } else {
@@ -25,7 +27,7 @@ function App() {
             nome: jogador.equipe,
             corPrimaria: jogador.cor, // Usar a cor que o usuário escolheu
             corSecundaria: '#f0f0f0', // Cor secundária padrão
-            jogadores: [jogador]
+            jogadores: [{ ...jogador, id: Date.now() }] // Adicione um campo `id` único para cada jogador
           }
         ];
       }
