@@ -4,10 +4,23 @@ import { useState } from 'react';
 import Banner from './componentes/Banner/Banner';
 import Formulario from './componentes/Formulario';
 import Time from './componentes/Time';
+import Login from './componentes/Login'; // Importar o componente de Login
 
 function App() {
   const [times, setTimes] = useState([]); // Inicialize `times` como um array vazio
+  const [user, setUser] = useState(null); // Estado para gerenciar o usuário logado
 
+  // Função de login para validar o usuário
+  const handleLogin = (email, password) => {
+    // Aqui você pode adicionar a lógica de autenticação (atualmente é um exemplo simples)
+    if (email === 'exemplo@teste.com' && password === '123456') {
+      setUser({ email });
+    } else {
+      alert('Credenciais inválidas');
+    }
+  };
+
+  // Função para adicionar um novo jogador
   const jogadorAdd = (jogador) => {
     setTimes((prevTimes) => {
       const timeExistente = prevTimes.find((time) => time.nome === jogador.equipe);
@@ -34,6 +47,7 @@ function App() {
     });
   };
 
+  // Função para remover um jogador
   const removerJogador = (nomeTime, jogadorId) => {
     setTimes((prevTimes) =>
       prevTimes
@@ -51,19 +65,26 @@ function App() {
 
   return (
     <div className="App">
-      <Banner />
-      <Formulario newJogador={jogadorAdd} />
+      {!user ? (
+        // Renderiza a tela de login se o usuário não estiver autenticado
+        <Login onLogin={handleLogin} />
+      ) : (
+        <>
+          <Banner />
+          <Formulario newJogador={jogadorAdd} />
 
-      {times.map((time) => (
-        <Time
-          key={time.nome}
-          nome={time.nome}
-          corPrimaria={time.corPrimaria}
-          corSecundaria={time.corSecundaria}
-          jogadores={time.jogadores}
-          onRemoveJogador={(jogadorId) => removerJogador(time.nome, jogadorId)} // Passa a função de remoção para o componente Time
-        />
-      ))}
+          {times.map((time) => (
+            <Time
+              key={time.nome}
+              nome={time.nome}
+              corPrimaria={time.corPrimaria}
+              corSecundaria={time.corSecundaria}
+              jogadores={time.jogadores}
+              onRemoveJogador={(jogadorId) => removerJogador(time.nome, jogadorId)} // Passa a função de remoção para o componente Time
+            />
+          ))}
+        </>
+      )}
     </div>
   );
 }

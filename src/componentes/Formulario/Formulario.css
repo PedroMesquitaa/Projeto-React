@@ -7,10 +7,9 @@
 .formulario form {
     max-width: 80%;
     background-color: #1A1A20;
-    border-radius: 0px  20px  20px 0px;
+    border-radius: 0px 20px 20px 0px;
     padding: 36px 64px;
     box-shadow: 8px 8px 16px rgba(0,0,0, 0.08);
-    border: 0,5px solid #7c7c7c;
 }
 
 .formulario div img {
@@ -71,6 +70,22 @@
     margin-right: 10px;
 }
 
+/* Remove a cor de fundo padrão do navegador nos campos autofill */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0px 1000px #1A1A20 inset; /* Cor de fundo padrão do campo */
+    box-shadow: 0 0 0px 1000px #1A1A20 inset; /* Para navegadores que suportam apenas box-shadow */
+    -webkit-text-fill-color: #e1e1e6; /* Cor do texto que deve ficar nos campos */
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+input:-internal-autofill-selected {
+    background-color: #1A1A20 !important; /* Fundo do campo */
+    color: #e1e1e6 !important; /* Cor do texto no autofill */
+}
+
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
     .formulario {
@@ -100,7 +115,7 @@
         font-size: 16px;
     }
 
-    .campo-upload{
+    .campo-upload {
         display: flex;
         flex-direction: column;
         gap: 10px;
