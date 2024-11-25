@@ -17,3 +17,70 @@
     padding-top: 0px;
     border-bottom: 1px solid #1A1A20;
 }
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+    .banner h1 {
+        font-size: 1.8rem; /* Fonte para smartphones */
+    }
+
+    .banner img {
+        max-width: 30%; /* Imagem ainda menor para smartphones */
+    }
+}
+
+
+/* Smartphones (portrait) ----------- */
+@media only screen 
+and (max-width : 320px) {
+    .banner h1 {
+        font-size: 1.6rem; /* Fonte menor para retrato */
+    }
+
+    .banner img {
+        max-width: 35%; /* Imagem menor para retrato */
+    }
+}
+
+/* Tablet (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+    .banner h1 {
+        font-size: 2.5rem; /* Fonte para tablets */
+    }
+
+    .banner img {
+        max-width: 20%; /* Imagem ligeiramente menor para tablets */
+    }
+}
+
+/* Tablet (landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) {
+    .banner h1 {
+        font-size: 3rem; /* Fonte maior em paisagem */
+    }
+
+    .banner img {
+        max-width: 18%; /* Imagem menor para paisagem */
+    }
+}
+
+/* Tablet (portrait) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) {
+    .banner h1 {
+        font-size: 2.8rem; /* Fonte ajustada para retrato */
+    }
+
+    .banner img {
+        max-width: 22%; /* Imagem menor para retrato */
+    }
+}
