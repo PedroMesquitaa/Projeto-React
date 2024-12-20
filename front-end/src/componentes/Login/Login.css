@@ -1,0 +1,81 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #1A1A20;
+  }
+  
+  .login-form {
+    background-color: #282c34;
+    padding: 40px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 400px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-form h2 {
+    color: #e1e1e6;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .input-container label {
+    color: #e1e1e6;
+  }
+  
+  .input-container input {
+    padding: 10px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background-color: #1a1a20;
+    color: #e1e1e6;
+    transition: border-color 0.3s ease;
+  }
+  
+  .input-container input:focus {
+    outline: none;
+    border-color: #61dafb;
+  }
+  
+  .login-button {
+    padding: 10px;
+    background-color: #61dafb;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #000;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-button:hover {
+    background-color: #21a1f1;
+  }
+  
+  /* Adicionando o botão de alternância */
+.toggle-button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+    color: #61dafb;
+    cursor: pointer;
+    font-size: 0.9em;
+    text-decoration: underline;
+  }
+  
+  .toggle-button:hover {
+    color: #21a1f1;
+  }
