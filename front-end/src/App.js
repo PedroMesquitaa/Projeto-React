@@ -1,35 +1,26 @@
 import { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Banner from './componentes/Banner/Banner';
-import Formulario from './componentes/Formulario'; // Importa o componente Formulario
+import Formulario from './componentes/Formulario';
 import Time from './componentes/Time';
-import Login from './componentes/Login'; // Importa o componente Login
+import Login from './componentes/Login';
 
 function App() {
-  const [times, setTimes] = useState([]); // Inicialize `times` como um array vazio
-  const [user, setUser] = useState(null); // Estado para gerenciar o usuário logado
+  const [times, setTimes] = useState([]);
+  const [user, setUser] = useState(null);
 
-  // Função de login para validar o usuário
-  const handleLogin = (email, password, navigate) => {
-    // Aqui você pode adicionar a lógica de autenticação com a API
-    if (email === 'exemplo@teste.com' && password === '123456') {
-      // Após autenticação bem-sucedida, define o usuário logado
-      setUser({ email });
-      navigate('/formulario'); // Redireciona para a página de criação de times
-    } else {
-      alert('Credenciais inválidas');
-    }
+  // Função de login
+  const handleLogin = (email) => {
+    setUser({ email });
   };
 
-  // Função para registrar um novo usuário (caso você queira adicionar essa funcionalidade)
+  // Função de registro
   const handleRegister = (email, password, navigate) => {
-    // Adicione lógica para registrar o usuário (isso pode ser feito com uma API de cadastro)
     alert('Cadastro realizado com sucesso!');
-    // Após o cadastro, você pode realizar o login automaticamente ou apenas exibir uma mensagem.
     handleLogin(email, password, navigate);
   };
 
-  // Função para adicionar um novo jogador
+  // Adiciona um jogador
   const jogadorAdd = (jogador) => {
     setTimes((prevTimes) => {
       const timeExistente = prevTimes.find((time) => time.nome === jogador.equipe);
@@ -54,7 +45,7 @@ function App() {
     });
   };
 
-  // Função para remover um jogador
+  // Remove um jogador
   const removerJogador = (nomeTime, jogadorId) => {
     setTimes((prevTimes) =>
       prevTimes
@@ -74,10 +65,13 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
+          {/* Rota de Login */}
           <Route
             path="/login"
             element={<Login onLogin={handleLogin} onRegister={handleRegister} />}
           />
+          
+          {/* Rota de Formulário e Times */}
           <Route
             path="/formulario"
             element={
@@ -97,10 +91,13 @@ function App() {
                   ))}
                 </>
               ) : (
-                <Login onLogin={handleLogin} onRegister={handleRegister} />
+                <Navigate to="/login" /> // Redireciona para o login se não estiver logado
               )
             }
           />
+          
+          {/* Redirecionamento padrão para rotas inválidas */}
+          <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
       </div>
     </Router>
