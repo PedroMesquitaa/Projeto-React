@@ -32,6 +32,9 @@ const Login = ({ onLogin, onRegister }) => {
         if (isRegistering) {
           alert('Cadastro realizado com sucesso! Faça login para continuar.');
           setIsRegistering(false); // Alterna para a tela de login
+          setEmail(''); // Limpa o campo de email
+          setPassword(''); // Limpa o campo de senha
+          setUsername(''); // Limpa o campo de nome de usuário
         } else {
           onLogin(bodyData); // Passa os dados do usuário para o App
           navigate('/formulario'); // Navega para a tela principal
