@@ -54,7 +54,7 @@ app.post('/api/login', async (req, res) => {
             return res.status(400).send('Credenciais inválidas');
         }
 
-        res.status(200).send('Login bem-sucedido');
+        res.status(200).send({ok:true});
     } catch (err) {
         console.error(err); // Logar o erro para depuração
         res.status(400).send('Erro ao realizar login');

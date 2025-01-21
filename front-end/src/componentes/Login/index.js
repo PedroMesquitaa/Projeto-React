@@ -1,50 +1,46 @@
 import React, { useState } from 'react';
 import './Login.css';
-import { useNavigate } from 'react-router-dom';  // Importe o useNavigate
+import { useNavigate } from 'react-router-dom';
 
 const Login = ({ onLogin, onRegister }) => {
-  const navigate = useNavigate();  // Hook para navegação
+  const navigate = useNavigate(); // Hook para navegação
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [username, setUsername] = useState(''); // Novo estado para username
-  const [isRegistering, setIsRegistering] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(''); // Para exibir erros
+  const [username, setUsername] = useState(''); // Estado para o nome de usuário
+  const [isRegistering, setIsRegistering] = useState(false); // Alternar entre login/cadastro
+  const [errorMessage, setErrorMessage] = useState(''); // Estado para mensagem de erro
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const url = isRegistering
-      ? 'http://localhost:5000/api/register' // Rota de registro
-      : 'http://localhost:5000/api/login'; // Rota de login
+      ? 'http://localhost:5000/api/register' // Endpoint de registro
+      : 'http://localhost:5000/api/login'; // Endpoint de login
 
     const bodyData = isRegistering
-      ? { username, email, password } // Inclui username no cadastro
-      : { email, password }; // Apenas email e senha no login
+      ? { username, email, password } // Dados para cadastro
+      : { email, password }; // Dados para login
 
     try {
       const response = await fetch(url, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(bodyData),
       });
-
-      const data = await response.json();
-
+      
       if (response.ok) {
         if (isRegistering) {
-          // Chama a função onRegister passando os dados
-          onRegister(data);
+          alert('Cadastro realizado com sucesso! Faça login para continuar.');
+          setIsRegistering(false); // Alterna para a tela de login
         } else {
-          // Chama a função onLogin passando os dados
-          onLogin(data);
-          navigate('/criar-times');  // Navegar para a página de criação de times
+          onLogin(bodyData); // Passa os dados do usuário para o App
+          navigate('/formulario'); // Navega para a tela principal
         }
       } else {
-        setErrorMessage(data.message || 'Ocorreu um erro. Tente novamente.');
+        setErrorMessage(response.message || 'Ocorreu um erro. Tente novamente.');
       }
     } catch (err) {
+      console.log(err);
       setErrorMessage('Erro ao se conectar com o servidor.');
     }
   };
@@ -54,6 +50,7 @@ const Login = ({ onLogin, onRegister }) => {
       <form onSubmit={handleSubmit} className="login-form">
         <h2>{isRegistering ? 'Cadastro' : 'Login'}</h2>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
+
         {isRegistering && (
           <div className="input-container">
             <label htmlFor="username">Nome de usuário:</label>
@@ -89,15 +86,22 @@ const Login = ({ onLogin, onRegister }) => {
             required
           />
         </div>
+
         <button type="submit" className="login-button">
           {isRegistering ? 'Cadastrar' : 'Entrar'}
         </button>
+
         <button
           type="button"
           className="toggle-button"
-          onClick={() => setIsRegistering(!isRegistering)}
+          onClick={() => {
+            setIsRegistering(!isRegistering);
+            setErrorMessage(''); // Limpa mensagens de erro ao alternar
+          }}
         >
-          {isRegistering ? 'Já tem uma conta? Faça Login' : 'Não tem uma conta? Cadastre-se'}
+          {isRegistering
+            ? 'Já tem uma conta? Faça Login'
+            : 'Não tem uma conta? Cadastre-se'}
         </button>
       </form>
     </div>
